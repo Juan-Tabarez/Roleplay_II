@@ -21,7 +21,7 @@ namespace Program
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");
             Console.WriteLine($"Gandalf attacks Gimli with ⚔️ {gandalf.AttackValue}");
 
-            gimli.ReceiveAttack(gandalf.AttackValue);
+            gandalf.AttackCharacter(gimli);
 
             Console.WriteLine($"Gimli has ❤️ {gimli.Health}");
 

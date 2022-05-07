@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public class Wizard
+    public class Wizard : ICharacter
     {
         private int health = 100;
 
@@ -37,17 +37,17 @@ namespace RoleplayGame
             {
                 return this.health;
             }
-            private set
+            set
             {
                 this.health = value < 0 ? 0 : value;
             }
         }
 
-        public void ReceiveAttack(int power)
+        public void AttackCharacter(ICharacter character)
         {
-            if (this.DefenseValue < power)
+            if ((character.Health > 0) && (this.AttackValue > character.DefenseValue))
             {
-                this.Health -= power - this.DefenseValue;
+                character.Health -= (this.AttackValue - character.DefenseValue);
             }
         }
 
