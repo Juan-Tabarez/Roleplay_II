@@ -37,17 +37,17 @@ namespace RoleplayGame
             {
                 return this.health;
             }
-            set
+            private set
             {
                 this.health = value < 0 ? 0 : value;
             }
         }
 
-        public void AttackCharacter(ICharacter character)
+        public void ReceiveAttack(int power)
         {
-            if ((character.Health > 0) && (this.AttackValue > character.DefenseValue))
+            if (this.DefenseValue < power)
             {
-                character.Health -= (this.AttackValue - character.DefenseValue);
+                this.Health -= power - this.DefenseValue;
             }
         }
 

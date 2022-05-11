@@ -26,14 +26,6 @@ namespace Test.Library
             Assert.AreEqual(this.gandalf.Name, "Merlín");
         }
 
-        //Test que demuestra que no es posible asignar una vida válida.
-        [Test]
-        public void InvalidHealthTest()
-        {
-            this.gandalf.Health = -30;
-            Assert.AreEqual(this.gandalf.Health, 0);
-        }
-
         //Test que demuestra que es posible asignar una vida válida.
         [Test]
         public void ValidHealthTest()
@@ -64,7 +56,7 @@ namespace Test.Library
             Archer legolas = new Archer("Legolas");
             legolas.Bow = new Bow();
             legolas.Helmet = new Helmet();
-            this.gandalf.AttackCharacter(legolas);
+            legolas.ReceiveAttack(this.gandalf.AttackValue);
             int expectedHealth = 0;
             Assert.AreEqual(expectedHealth, legolas.Health);
         }
@@ -73,7 +65,7 @@ namespace Test.Library
         [Test]
         public void HealTest()
         {
-            this.gandalf.Health = 0;
+            this.gandalf.ReceiveAttack(this.gandalf.AttackValue * 3);
             this.gandalf.Cure();
             Assert.AreEqual(this.gandalf.Health, 100);
         }
