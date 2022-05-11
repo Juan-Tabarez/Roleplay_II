@@ -23,14 +23,6 @@ namespace Test.Library
             Assert.AreEqual(this.legolas.Name, "Sarion");
         }
 
-        //Test que demuestra que no es posible asignar una vida válida.
-        [Test]
-        public void InvalidHealthTest()
-        {
-            this.legolas.Health = -30;
-            Assert.AreEqual(this.legolas.Health, 0);
-        }
-
         //Test que demuestra que es posible asignar una vida válida.
         [Test]
         public void ValidHealthTest()
@@ -61,7 +53,7 @@ namespace Test.Library
             Archer frey = new Archer("Frey");
             frey.Bow = new Bow();
             frey.Helmet = new Helmet();
-            this.legolas.AttackCharacter(frey);
+            frey.ReceiveAttack(this.legolas.AttackValue);
             int expectedHealth = 100;
             Assert.AreEqual(expectedHealth, frey.Health);
         }
@@ -70,7 +62,7 @@ namespace Test.Library
         [Test]
         public void HealTest()
         {
-            this.legolas.Health = 0;
+            this.legolas.ReceiveAttack(this.legolas.AttackValue * 3);
             this.legolas.Cure();
             Assert.AreEqual(this.legolas.Health, 100);
         }

@@ -24,14 +24,6 @@ namespace Test.Library
             Assert.AreEqual(this.arthur.Name, "Benjamin");
         }
 
-        //Test que demuestra que no es posible asignar una vida válida.
-        [Test]
-        public void InvalidHealthTest()
-        {
-            this.arthur.Health = -30;
-            Assert.AreEqual(this.arthur.Health, 0);
-        }
-
         //Test que demuestra que es posible asignar una vida válida.
         [Test]
         public void ValidHealthTest()
@@ -63,7 +55,7 @@ namespace Test.Library
             fernando.Sword = new Sword();
             fernando.Shield = new Shield();
             fernando.Armor = new Armor();
-            this.arthur.AttackCharacter(fernando);
+            fernando.ReceiveAttack(this.arthur.AttackValue);
             int expectedHealth = 100;
             Assert.AreEqual(expectedHealth, fernando.Health);
         }
@@ -72,7 +64,7 @@ namespace Test.Library
         [Test]
         public void HealTest()
         {
-            this.arthur.Health = 0;
+            this.arthur.ReceiveAttack(this.arthur.AttackValue * 3);
             this.arthur.Cure();
             Assert.AreEqual(this.arthur.Health, 100);
         }
